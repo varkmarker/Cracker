@@ -1,69 +1,238 @@
 import random
 import string
 import os
+import time
+from colr import Colr as colr
 
 
-class Alphanumeric:
-    def generate_password_8(length , maxlength):
-        for i in range(length , maxlength + 1):
-            characters = string.ascii_letters + string.digits
-            password = "".join(random.choice(characters) for _ in range(i))
-            print (password)
-            
+# Color's functions
+class Colors:
+    def red(data):
+        print(colr().hex("#ff0000", data, rgb_mode=True))
 
-    
+    def rose(data):
+        print(colr().hex("#ff0066", data, rgb_mode=True))
+
+    def green(data):
+        print(colr().hex("#00ff8d", data, rgb_mode=True))
+
+    def gnome_green(data):
+        print(colr().hex("#2ed1b4", data, rgb_mode=True))
+
+    def yellow_green(data):
+        print(colr().hex("#a8c836", data, rgb_mode=True))
+
+    def dark_orange(data):
+        print(colr().hex("#cf301b", data, rgb_mode=True))
+
+    def light_gnome(data):
+        print(colr().hex("#00ffc4", data, rgb_mode=True))
+
+    def yellow_green(data):
+        print(colr().hex("#7ed666", data, rgb_mode=True))
+
+    def violet(data):
+        print(colr().hex("#cc33ff", data, rgb_mode=True))
+
+    def light_green(data):
+        print(colr().hex("#21ff00", data, rgb_mode=True))
+
+    def orange(data):
+        print(colr().hex("#ff8e35", data, rgb_mode=True))
+
+    def yellow(data):
+        print(colr().hex("#fff300", data, rgb_mode=True))
+
+    def sky_blue(data):
+        print(colr().hex("#00ccff", data, rgb_mode=True))
+
+    def blue(data):
+        print(colr().hex("#0000ff", data, rgb_mode=True))
+
+    def cream(data):
+        print(colr().hex("#ff9999", data, rgb_mode=True))
+
+    def dark_rose(data):
+        print(colr().hex("#cc0066", data, rgb_mode=True))
+
+    def dark_red(data):
+        print(colr().hex("#cc0000", data, rgb_mode=True))
+
+    def dark_green(data):
+        print(colr().hex("#009933", data, rgb_mode=True))
+
+    def light_blue(data):
+        print(colr().hex("#6666ff", data, rgb_mode=True))
 
 
-# num_passwords = int(
-#     input("Enter you Password count : ")
-# )  # Number of passwords to generate
-# password_file = input("Enter your file name : ")
+# Operators
+class Operators:
+    def exit():
+        time.sleep(0.5)
+        Colors.sky_blue(
+            " \n If this script saves you time. You can give a star on GitHub"
+        )
+        time.sleep(0.5)
+        Colors.rose(
+            " \n If any error you can post the issue on the GitHub page: https://github.com/varkmarker/Tool-Kit/issues"
+        )
+        time.sleep(0.5)
+        Colors.light_blue(" \n AUTHOR: VARKMARKER \n")
+        os.system("exit")
+
+    def case_default():
+        time.sleep(0.5)
+        print(
+            colr().hex(
+                "#00ffff",
+                """                 (__) 
+                 (oo) 
+           /------\/ 
+          / |    ||   
+         *  /\---/\ 
+            ~~   ~~""",
+            )
+        )
+        Colors.red("    ....Invalid option....")
+
+# Main Choice
+def choice():
+    Colors.light_blue(
+        "\n [1] ASCII_LOWERCASE(abcd)                             [2] ASCII_UPPERCASE(ABCD)"
+    )
+    Colors.light_blue(
+        " [3] PUNCTUATION(#$%&)                                 [4] DIGITS(123)"
+    )
+    Colors.light_blue(
+        " [5] HEXDIGITS(Digits+lower and uppercase alphabet)    [6] ASCII_LETTERS(lowercase and uppercase alphabet)"
+    )
+    Colors.light_blue(" [7] EXIT")
+    time.sleep(0.5)
+    Colors.red("\n Select the type of password key's")
+    time.sleep(0.5)
+    choice = input(colr().hex("#ff0000", " > "))
+    time.sleep(0.5)
+    choice = int(choice)
+    if choice == 1:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(
+            minimum, maximum, string.ascii_lowercase, count, filename
+        )
+    elif choice == 2:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(
+            minimum, maximum, string.ascii_uppercase, count, filename
+        )
+    elif choice == 3:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(
+            minimum, maximum, string.punctuation, count, filename
+        )
+    elif choice == 4:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(minimum, maximum, string.digits, count, filename)
+    elif choice == 5:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(minimum, maximum, string.hexdigits, count, filename)
+    elif choice == 6:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(
+            minimum, maximum, string.ascii_letters, count, filename
+        )
+    elif choice == 7:
+        Operators.exit()
+    else:
+        Operators.case_default()
+# Generate's password form here
+class Generate:
+    def generate_password(minilength, maxlength, type, count, filename):
+        time.sleep(0.5)
+        Colors.red("PASSWORD WORDLIST CREATING ......")
+        time.sleep(0.5)
+        for length in range(minilength, maxlength + 1):
+            for i in range(1, count + 1):
+                characters = type
+                password = "".join(random.choice(characters) for _ in range(length))
+                print(password)
+                os.system(f"echo {password} >> {filename}.txt")
+        time.sleep(0.5)
+        Colors.red("PASSWORD CREATED SUCCESSFULLY")
+        time.sleep(0.5)
+        choice()
 
 
-def creater():
-    i = 1
-    print(" Password is creating ......")
-    for i in range(num_passwords):
-        print(i)
-        password_8 = Alphanumeric.generate_password_8()
-        password_9 = Alphanumeric.generate_password_9()
-        password_10 = Alphanumeric.generate_password_10()
-        password_11 = Alphanumeric.generate_password_11()
-        password_12 = Alphanumeric.generate_password_12()
-        password_13 = Alphanumeric.generate_password_13()
-        password_14 = Alphanumeric.generate_password_14()
-        password_15 = Alphanumeric.generate_password_15()
-        password_16 = Alphanumeric.generate_password_16()
-        password_17 = Alphanumeric.generate_password_17()
-        password_18 = Alphanumeric.generate_password_18()
-        password_19 = Alphanumeric.generate_password_19()
-        password_20 = Alphanumeric.generate_password_20()
-        print(password_8)
-        print(password_9)
-        print(password_10)
-        print(password_11)
-        print(password_12)
-        print(password_13)
-        print(password_14)
-        print(password_15)
-        print(password_16)
-        print(password_17)
-        print(password_18)
-        print(password_19)
-        print(password_20)
 
-        os.system(f"\n echo {password_8} >> {password_file}")
-        os.system(f"echo {password_9} >> {password_file}")
-        os.system(f"echo {password_10} >> {password_file}")
-        os.system(f"echo {password_11} >> {password_file}")
-        os.system(f"echo {password_12} >> {password_file}")
-        os.system(f"echo {password_13} >> {password_file}")
-        os.system(f"echo {password_14} >> {password_file}")
-        os.system(f"echo {password_15} >> {password_file}")
-        os.system(f"echo {password_16} >> {password_file}")
-        os.system(f"echo {password_17} >> {password_file}")
-        os.system(f"echo {password_18} >> {password_file}")
-        os.system(f"echo {password_19} >> {password_file}")
-        os.system(f"echo {password_20} >> {password_file}")
-    print(" Password successfully finished")
-Alphanumeric.generate_password_8(3 ,5)
+# Call choice function
+choice()
