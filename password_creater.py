@@ -69,13 +69,19 @@ class Colors:
 class Operators:
     def exit():
         time.sleep(0.5)
-        Colors.sky_blue(
+        Colors.light_blue(
             " \n If this script saves you time. You can give a star on GitHub"
         )
         time.sleep(0.5)
-        Colors.rose(
-            " \n If any error you can post the issue on the GitHub page: https://github.com/varkmarker/Tool-Kit/issues"
+        Colors.light_blue(
+            " \n If any error you can post the issue on the GitHub page: https://github.com/varkmarker/Password_creater/issues"
         )
+        time.sleep(0.5)
+        Colors.light_blue(
+            f" \n If you have any suggestions about this tool you can contact me on Twitter."
+        )
+        time.sleep(0.5)
+        Colors.light_blue(" \n Twitter link: https://twitter.com/varkmarker")
         time.sleep(0.5)
         Colors.light_blue(" \n AUTHOR: VARKMARKER \n")
         os.system("exit")
@@ -95,8 +101,26 @@ class Operators:
         )
         Colors.red("    ....Invalid option....")
 
+
 # Main Choice
 def choice():
+    print(
+        colr().hex(
+            "#ff0000",
+            """\n                                      888                       
+                                      888                       
+                                      888                       
+    .d8888b 888d888 8888b.   .d8888b  888  888  .d88b.  888d888 
+    d88P"    888P"      "88b d88P"    888 .88P d8P  Y8b 888P"   
+    888      888    .d888888 888      888888K  88888888 888     
+    Y88b.    888    888  888 Y88b.    888 "88b Y8b.     888     
+    "Y8888P  888    "Y888888  "Y8888P 888  888  "Y8888  888    
+    """,
+        ),
+        colr().hex(
+            "#00ff8d", "                                                         1.0"
+        ),
+    )
     Colors.light_blue(
         "\n [1] ASCII_LOWERCASE(abcd)                             [2] ASCII_UPPERCASE(ABCD)"
     )
@@ -111,8 +135,10 @@ def choice():
     Colors.red("\n Select the type of password key's")
     time.sleep(0.5)
     choice = input(colr().hex("#ff0000", " > "))
-    time.sleep(0.5)
-    choice = int(choice)
+    try:
+        choice = int(choice)
+    except ValueError:
+        Operators.case_default()
     if choice == 1:
         time.sleep(0.5)
         minimum = input(colr().hex("#6666ff", " Minimum Length > "))
@@ -213,13 +239,13 @@ def choice():
         )
     elif choice == 7:
         Operators.exit()
-    else:
-        Operators.case_default()
+
+
 # Generate's password form here
 class Generate:
     def generate_password(minilength, maxlength, type, count, filename):
         time.sleep(0.5)
-        Colors.red("PASSWORD WORDLIST CREATING ......")
+        Colors.red(" PASSWORD WORDLIST CREATING ......")
         time.sleep(0.5)
         for length in range(minilength, maxlength + 1):
             for i in range(1, count + 1):
@@ -228,10 +254,9 @@ class Generate:
                 print(password)
                 os.system(f"echo {password} >> {filename}.txt")
         time.sleep(0.5)
-        Colors.red("PASSWORD CREATED SUCCESSFULLY")
+        Colors.red(" PASSWORD CREATED SUCCESSFULLY")
         time.sleep(0.5)
         choice()
-
 
 
 # Call choice function
