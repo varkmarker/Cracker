@@ -250,7 +250,7 @@ class Generate:
             for i in range(1, count + 1):
                 characters = type
                 password = "".join(random.choice(characters) for _ in range(length))
-                print(password)
+                print(f"{i} : {password}")
                 os.system(f"echo {password} >> {filename}.txt")
         time.sleep(0.5)
         Colors.red(" PASSWORD CREATED SUCCESSFULLY")
