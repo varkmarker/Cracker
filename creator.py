@@ -117,7 +117,8 @@ def choice():
   #####  #    # ###### #    #   #    ####  #    #""",
         ),
         colr().hex(
-            "#00ff8d", "                                                                                        1.0"
+            "#00ff8d",
+            "1.0",
         ),
     )
     Colors.light_blue(
