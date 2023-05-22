@@ -128,9 +128,10 @@ def choice():
         " [3] PUNCTUATION(#$%&)                                 [4] DIGITS(123)"
     )
     Colors.light_blue(
-        " [5] HEXDIGITS(Digits+lower and uppercase alphabet)    [6] ASCII_LETTERS(lowercase and uppercase alphabet)"
+        " [5] ASCII_UPPERCASE(ABCD)+DIGITS(123)                 [6] ASCII_LOWERCASE(abcd)+DIGITS(123)   "
     )
-    Colors.light_blue(" [7] EXIT")
+    Colors.light_blue(" [7] HEXDIGITS(Digits+lower and uppercase alphabet)    [8] ASCII_LETTERS(lowercase and uppercase alphabet)")
+    Colors.light_blue(" [9] EXIT")
     time.sleep(0.5)
     Colors.red("\n Select the type of password key's")
     time.sleep(0.5)
@@ -219,8 +220,42 @@ def choice():
         filename = input(colr().hex("#6666ff", " Enter your filename > "))
         filename = str(filename)
         time.sleep(0.5)
-        Generate.generate_password(minimum, maximum, string.hexdigits, count, filename)
+        Generate.generate_password(
+            minimum, maximum, string.ascii_uppercase+string.digits, count, filename
+        )
     elif choice == 6:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(
+            minimum, maximum, string.ascii_lowercase+string.digits, count, filename
+        )
+    elif choice == 7:
+        time.sleep(0.5)
+        minimum = input(colr().hex("#6666ff", " Minimum Length > "))
+        minimum = int(minimum)
+        time.sleep(0.5)
+        maximum = input(colr().hex("#6666ff", " Maximum Length > "))
+        maximum = int(maximum)
+        time.sleep(0.5)
+        count = input(colr().hex("#6666ff", " Maximum Count > "))
+        count = int(count)
+        time.sleep(0.5)
+        filename = input(colr().hex("#6666ff", " Enter your filename > "))
+        filename = str(filename)
+        time.sleep(0.5)
+        Generate.generate_password(minimum, maximum, string.hexdigits, count, filename)
+    elif choice == 8:
         time.sleep(0.5)
         minimum = input(colr().hex("#6666ff", " Minimum Length > "))
         minimum = int(minimum)
@@ -237,7 +272,7 @@ def choice():
         Generate.generate_password(
             minimum, maximum, string.ascii_letters, count, filename
         )
-    elif choice == 7:
+    elif choice == 9:
         Operators.exit()
 
 
