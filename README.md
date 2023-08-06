@@ -1,9 +1,9 @@
 # Password_creater
 
-Clone the repo
+Clone the repo : 
 
-$ git clone https://github.com/varkmarker/Password_creater.git
+    git clone https://github.com/varkmarker/Password_creater.git
 
-Start
+Run : 
 
-$ python3 creator.py
+    python3 creator.py
