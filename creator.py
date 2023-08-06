@@ -81,9 +81,9 @@ class Operators:
             f" \n If you have any suggestions about this tool you can contact me on Twitter."
         )
         time.sleep(0.5)
-        Colors.light_blue(" \n Twitter link: https://twitter.com/varkmarker")
+        Colors.sky_blue(" \n Twitter link: https://twitter.com/varkmarker")
         time.sleep(0.5)
-        Colors.light_blue(" \n AUTHOR: VARKMARKER \n")
+        Colors.green(" \n AUTHOR: VARKMARKER \n")
         os.system("exit")
 
     def case_default():
