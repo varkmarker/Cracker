@@ -10,7 +10,7 @@ Change the directory :
 
 Install dependence : 
        
-    pip install -r requirements.txt
+    pip install -r requirements.txt -t . 
 
 Run : 
 
@@ -18,4 +18,4 @@ Run :
 
 Online CMD :
 
-    git clone https://github.com/varkmarker/Creator.git && cd Creator && pip install -r requirements.txt && python3 creator.py
+    git clone https://github.com/varkmarker/Creator.git && cd Creator && pip install -r requirements.txt -t . && python3 creator.py
