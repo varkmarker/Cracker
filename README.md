@@ -8,7 +8,7 @@ Change the directory :
 
     cd Creator
 
-Install dependience : 
+Install dependence : 
        
     pip install -r requirements.txt
 
