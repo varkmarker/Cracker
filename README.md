@@ -2,7 +2,7 @@
 
 Clone the repo : 
 
-    git clone https://github.com/varkmarker/Creator.git
+    git clone https://github.com/varkmarker/Crunch.git
 
 Change the directory :
 
@@ -18,4 +18,4 @@ Run :
 
 Online CMD :
 
-    git clone https://github.com/varkmarker/Creator.git && cd Creator && pip install -r requirements.txt -t . && python3 creator.py
+    git clone https://github.com/varkmarker/Crunch.git && cd Creator && pip install -r requirements.txt -t . && python3 creator.py
