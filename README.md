@@ -1,5 +1,9 @@
 # Cracker
-![Cracker](https://github.com/varkmarker/Cracker/Image/Cracker_main.png)
+<br>
+
+![github-small](https://github.com/varkmarker/Cracker/Image/Cracker_main.png)
+
+<br>
 Clone the repo : 
 
     git clone https://github.com/varkmarker/Cracker.git
