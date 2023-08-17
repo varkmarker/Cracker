@@ -115,34 +115,55 @@ def save_to_file(wordlist, filename):
         for word in wordlist:
             file.write(word + "\n")
 
-    print(colr().hex("#0000ff",f"\n Wordlist generated with {colr().hex('#ff0000',len(wordlist),rgb_mode=True)}{colr().hex('#0000ff',' words.',rgb_mode=True)} ",rgb_mode=True))
+    print(
+        colr().hex(
+            "#0000ff",
+            f"\n Wordlist generated with {colr().hex('#ff0000',len(wordlist),rgb_mode=True)}{colr().hex('#0000ff',' words.',rgb_mode=True)} ",
+            rgb_mode=True,
+        )
+    )
 
 
 # Main Choice
 def choice():
+    null = ""
+    dash = null.center(83, "-")
+
     print(
         colr().hex(
             "#ff0000",
-            """\n    
-                                                            
-.s5SSSs.  .s5SSSs.  .s    s.  .s    s.  .s5SSSs.  .s    s.  
-      SS.       SS.       SS.       SS.       SS.       SS. 
-sS    `:; sS    S%S sS    S%S sSs.  S%S sS    `:; sS    S%S 
-SS        SS .sS;:' SS    S%S SS `S.S%S SS        SSSs. S%S 
-SS        SS    ;,  SS    S%S SS  `sS%S SS        SS    S%S 
-SS        SS    `:; SS    `:; SS    `:; SS        SS    `:; 
-SS    ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,. SS    ;,. 
-`:;;;;;:' `:    ;:' `:;;;;;:' :;    ;:' `:;;;;;:' :;    ;:' """,
+            """    
+::::::::  :::::::::      :::      ::::::::  :::    ::: :::::::::: :::::::::  
+:+:    :+: :+:    :+:   :+: :+:   :+:    :+: :+:   :+:  :+:        :+:    :+: 
++:+        +:+    +:+  +:+   +:+  +:+        +:+  +:+   +:+        +:+    +:+ 
++#+        +#++:++#:  +#++:++#++: +#+        +#++:++    +#++:++#   +#++:++#:  
++#+        +#+    +#+ +#+     +#+ +#+        +#+  +#+   +#+        +#+    +#+ 
+#+#    #+# #+#    #+# #+#     #+# #+#    #+# #+#   #+#  #+#        #+#    #+# 
+ ########  ###    ### ###     ###  ########  ###    ### ########## ###    ### """,
         ),
         colr().hex(
             "#00ff8d",
             "1.1",
         ),
     )
-    Colors.light_blue("\n [1] Crunch                             [2] Aircrack-ng")
-    Colors.light_blue(" [3] EXIT")
+
+    Colors.blue("\n" + dash)
+    null = ""
+    dash = null.center(35, "-")
+    Colors.blue("\n               " + dash)
+    print(
+        colr().hex("#0000ff", "               |", rgb_mode=True),
+        colr().hex("#ff0000", " [1] Cracker     [2] Aircrack-ng", rgb_mode=True),
+        colr().hex("#0000ff", "|", rgb_mode=True),
+    )
+    print(
+        colr().hex("#0000ff", "               |", rgb_mode=True),
+        colr().hex("#ff0000", " [3] Exit", rgb_mode=True),
+        colr().hex("#0000ff", "                      |", rgb_mode=True),
+    )
+    Colors.blue("               " + dash)
     sleep(0.5)
-    Colors.red("\n Select One of the give option ?")
+    Colors.light_blue("\n Select One of the give option ?")
     sleep(0.5)
     try:
         try:

@@ -1,5 +1,5 @@
-# Creator
-
+# Cracker
+![Cracker](https://github.com/varkmarker/Cracker/Image/Cracker_main.png)
 Clone the repo : 
 
     git clone https://github.com/varkmarker/Cracker.git
@@ -16,6 +16,6 @@ Run :
 
     python3 cracker.py
 
-Online CMD :
+One line CMD :
 
     git clone https://github.com/varkmarker/Cracker.git && cd Cracker && pip install -r requirements.txt -t . && python3 cracker.py
