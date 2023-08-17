@@ -2,11 +2,11 @@
 
 Clone the repo : 
 
-    git clone https://github.com/varkmarker/Crunch.git
+    git clone https://github.com/varkmarker/Cracker.git
 
 Change the directory :
 
-    cd Creator
+    cd Cracker
 
 Install dependence : 
        
@@ -14,8 +14,8 @@ Install dependence :
 
 Run : 
 
-    python3 creator.py
+    python3 cracker.py
 
 Online CMD :
 
-    git clone https://github.com/varkmarker/Crunch.git && cd Creator && pip install -r requirements.txt -t . && python3 creator.py
+    git clone https://github.com/varkmarker/Cracker.git && cd Cracker && pip install -r requirements.txt -t . && python3 cracker.py
