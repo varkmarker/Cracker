@@ -164,7 +164,7 @@ def choice():
     Colors.blue("               " + dash)
     sleep(0.5)
     Colors.light_blue("\n Select One of the give option ?")
-    sleep(0.5)
+
     try:
         try:
             choice = input(colr().hex("#ff0000", " > "))
