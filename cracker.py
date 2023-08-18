@@ -153,7 +153,7 @@ def choice():
     Colors.blue("\n               " + dash)
     print(
         colr().hex("#0000ff", "               |", rgb_mode=True),
-        colr().hex("#ff0000", " [1] Cracker     [2] Aircrack-ng", rgb_mode=True),
+        colr().hex("#ff0000", " [1] Cracker    [2] Aircrack-ng", rgb_mode=True),
         colr().hex("#0000ff", "|", rgb_mode=True),
     )
     print(
