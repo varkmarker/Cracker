@@ -123,9 +123,10 @@ def input_user():
         sleep(0.5)
         file_path = input(colr().hex("#6666ff", " File Name or Path > "))
         sleep(0.5)
+        # show the user input to verification
         Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
         print(
-            colr().hex("#ff0000", "        Minimul Length : ", rgb_mode=True),
+            colr().hex("#ff0000", "        Minimul Length :", rgb_mode=True),
             colr().hex(
                 "#00ff8d",
                 f"{min_length}",
