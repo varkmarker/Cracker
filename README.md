@@ -10,11 +10,11 @@ Warning : It will create password more than the rockyou.txt file . If you create
 <br>
 Clone the repo : 
 
-    git clone https://github.com/varkmarker/Mk-Passwd.git
+    git clone https://github.com/varkmarker/Cracker.git
 
 Change the directory :
 
-    cd Mk-Passwd
+    cd Cracker
 
 Install dependence : 
        
@@ -22,7 +22,7 @@ Install dependence :
 
 Run : 
 
-    python3 mk-passwd.py
+    python3 cracker.py
 <br>
 Press the number 1 to Make password directory
 <br>
@@ -30,4 +30,4 @@ Note : When you give the file with path Eg: /home/user/wordlist.txt = it will st
 
 One line CMD :
 
-    git clone https://github.com/varkmarker/Mk-Passwd.git && cd Mk-Passwd && pip install -r requirements.txt -t . && python3 mk-passwd.py
+    git clone https://github.com/varkmarker/Cracker.git && cd Cracker && pip install -r requirements.txt -t . && python3 cracker.py
