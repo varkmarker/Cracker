@@ -106,6 +106,19 @@ class Generate:
             for combination in product(characters, repeat=length):
                 yield "".join(combination)
 
+    # Directory reader
+    def directory(file_name_or_path):
+        f = open(file_name_or_path, "rb")
+        pass_list = f.readlines()
+        f.close()
+        for i in pass_list:
+            detection = chardet.detect(i)
+            encoding = detection["encoding"]
+            try:
+                yield i.decode(encoding).replace("\n", "")
+            except:
+                pass
+
 
 class Time:
     def stop_wotch(start_time):
@@ -119,37 +132,24 @@ class Time:
     def trying(key, obj_time_time):
         hours, mins, sec = Time.stop_wotch(obj_time_time)
         key_len = " " * int(20 - len(key))
-        # print(
-        #     colr().hex("#6666ff", "Trying"),
-        #     colr().hex("#6666ff", "["),
-        #     colr().hex("#cc33ff", f"{key}"),
-        #     colr().hex("#6666ff", "]"),
-        #     colr().hex("#cc33ff", f"{key_len}"),
-        #     colr().hex("#6666ff", "["),
-        #     colr().hex("#6666ff", "Less than minutes"),
-        #     colr().hex("#6666ff", "]"),
-        #     colr().hex("#6666ff", "["),
-        #     colr().hex("#6666ff", "Ctrl+C for Kill"),
-        #     colr().hex("#6666ff", "]"),
-        # )
-
+        print()
         print(
-            colr().hex("#6666ff", "Trying"),
+            "\033[A",colr().hex("#6666ff", "   Trying"),
             colr().hex("#6666ff", "["),
             colr().hex("#cc33ff", f"{key}"),
             colr().hex("#6666ff", "]"),
-            colr().hex("#cc33ff", f"{key_len}"),
-            # colr().hex("#6666ff", "["),
-            # colr().hex("#6666ff", f"{hours}"),
-            # colr().hex("#6666ff", ":"),
-            # colr().hex("#cc33ff", f"{mins}"),
-            # colr().hex("#6666ff", ":"),
-            # colr().hex("#cc33ff", f"{sec}"),
-            # colr().hex("#6666ff", "]"),
+            colr().hex("#6666ff", "     ["),
+            colr().hex("#6666ff", f"{hours}"),
+            colr().hex("#6666ff", ":"),
+            colr().hex("#cc33ff", f"{mins}"),
+            colr().hex("#6666ff", ":"),
+            colr().hex("#cc33ff", f"{sec}"),
+            colr().hex("#6666ff", "]"),
             colr().hex("#6666ff", "["),
             colr().hex("#6666ff", "Ctrl+C for Kill"),
-            colr().hex("#6666ff", "]"),
+            colr().hex("#6666ff", "]"),"\033[A"
         )
+        
 
 
 # Hash key generater
@@ -188,19 +188,19 @@ def result(target, key, obj_time_time):
     hours, mins, sec = Time.stop_wotch(obj_time_time)
     time_len = "-" * len(f"{hours}{mins}{sec}")
     if mins == "0" and sec == "0":
-        Colors.blue(f",-----------{time_len}---------------,")
+        Colors.blue(f"    ,-----------{time_len}---------------,")
         print(
-            colr().hex("#6666ff", "| "),
+            colr().hex("#6666ff", "    | "),
             colr().hex("#ff0000", "    Time :["),
             colr().hex("#ff8e35", "Less than a minute"),
             colr().hex("#ff0000", "]"),
             colr().hex("#6666ff", "   |"),
         )
-        Colors.blue(f"'---------------{time_len}-----------'")
+        Colors.blue(f"    '---------------{time_len}-----------'")
     else:
-        Colors.blue(f",-----------{time_len}---------------,")
+        Colors.blue(f"    ,-----------{time_len}---------------,")
         print(
-            colr().hex("#6666ff", "| "),
+            colr().hex("#6666ff", "    | "),
             colr().hex("#ff0000", "    Time :["),
             colr().hex("#ff8e35", f"{hours}"),
             colr().hex("#ff0000", ":"),
@@ -210,10 +210,10 @@ def result(target, key, obj_time_time):
             colr().hex("#ff0000", "]"),
             colr().hex("#6666ff", "   |"),
         )
-        Colors.blue(f"'---------------{time_len}-----------'")
-    Colors.blue(f",---------------------------------{style}{style2}----------------,")
+        Colors.blue(f"    '---------------{time_len}-----------'")
+    Colors.blue(f"    ,---------------------------------{style}{style2}----------------,")
     print(
-        colr().hex("#6666ff", "| "),
+        colr().hex("#6666ff", "    | "),
         colr().hex("#21ff00", "Password Found :"),
         colr().hex("#ff0000", "Target :"),
         colr().hex("#ff0000", "["),
@@ -225,7 +225,7 @@ def result(target, key, obj_time_time):
         colr().hex("#ff0000", "]"),
         colr().hex("#6666ff", "|"),
     )
-    Colors.blue(f"'---------------------------------{style}{style2}----------------'")
+    Colors.blue(f"    '---------------------------------{style}{style2}----------------'")
 
 
 # Checking he Hashshake key
@@ -312,7 +312,7 @@ class Check_Key:
                 return False
 
 
-def bruteforce():
+def sub_menu():
     print(
         colr().hex("#6666ff", "\n    Select"),
         colr().hex("#ff0000", "[1]"),
@@ -332,9 +332,18 @@ def bruteforce():
         colr().hex("#ff0000", "[0]"),
         colr().hex("#6666ff", "Exit"),
     )
+
+
+# =================================================================================================================================================================================================================================== #
+
+# Brute force attack
+
+
+def brute_force():
+    sub_menu()
     sleep(0.5)
-    command = input(colr().hex("#ff0000", "\n    Cracker/# "))
-    if command == "1":
+    choice = input(colr().hex("#ff0000", "\n    Brute Force/# "))
+    if choice == "1":
 
         def pdf_crack():
             try:
@@ -342,7 +351,7 @@ def bruteforce():
                     input(
                         colr().hex(
                             "#6666ff",
-                            f"\n    Input PDF File name or path >>",
+                            f"\n    Input PDF File name or path >> ",
                             rgb_mode=True,
                         )
                     )
@@ -355,13 +364,13 @@ def bruteforce():
                     "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
                 )
                 character_list = input(
-                    colr().hex("#6666ff", "    Characters >>")
+                    colr().hex("#6666ff", "    Characters >> ")
                 ).replace(" ", "")
                 minimum = int(
-                    input(colr().hex("#6666ff", "    Input Min Lenth Password >>"))
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
                 )
                 maximum = int(
-                    input(colr().hex("#6666ff", "    Input Max Lenth Password >>"))
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
                 )
                 # show the user input to verification
                 Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
@@ -393,6 +402,7 @@ def bruteforce():
                 )
                 Colors.dark_green("\n    Check the input is correct ? \n")
                 answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                print("")
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
@@ -403,7 +413,7 @@ def bruteforce():
                             break
                         else:
                             pass
-                    input(colr().hex("#ff0000", f"\n Press enter to  main #"))
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
                     pdf_crack()
@@ -417,7 +427,7 @@ def bruteforce():
                 Operators.case_default()
 
         pdf_crack()
-    elif command == "2":
+    elif choice == "2":
 
         def rar_crack():
             try:
@@ -425,7 +435,7 @@ def bruteforce():
                     input(
                         colr().hex(
                             "#6666ff",
-                            f"\n    Input RAR File name or path >>",
+                            f"\n    Input RAR File name or path >> ",
                             rgb_mode=True,
                         )
                     )
@@ -487,7 +497,7 @@ def bruteforce():
                             break
                         else:
                             pass
-                    input(colr().hex("#ff0000", f"\n    Press enter to  main #"))
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
                     rar_crack()
@@ -502,7 +512,7 @@ def bruteforce():
 
         rar_crack()
 
-    elif command == "3":
+    elif choice == "3":
 
         def zip_crack():
             try:
@@ -510,7 +520,7 @@ def bruteforce():
                     input(
                         colr().hex(
                             "#6666ff",
-                            f"\n    Input ZIP File name or path >>",
+                            f"\n    Input ZIP File name or path >> ",
                             rgb_mode=True,
                         )
                     )
@@ -523,13 +533,13 @@ def bruteforce():
                     "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
                 )
                 character_list = input(
-                    colr().hex("#6666ff", "    Characters >>")
+                    colr().hex("#6666ff", "    Characters >> ")
                 ).replace(" ", "")
                 minimum = int(
-                    input(colr().hex("#6666ff", "    Input Min Length Password >>"))
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
                 )
                 maximum = int(
-                    input(colr().hex("#6666ff", "    Input Max Length Password >>"))
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
                 )
                 # show the user input to verification
                 Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
@@ -561,6 +571,7 @@ def bruteforce():
                 )
                 Colors.dark_green("\n    Check the input is correct ? \n")
                 answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                print("")
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
@@ -571,7 +582,7 @@ def bruteforce():
                             break
                         else:
                             pass
-                    input(colr().hex("#ff0000", f"\n     Press enter to  main #"))
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
                     zip_crack()
@@ -586,12 +597,12 @@ def bruteforce():
 
         zip_crack()
 
-    elif command == "4":
+    elif choice == "4":
 
         def e_w_p():
             try:
                 ms_f = (
-                    input("\n    Input (Excel,World,PowerPoint) File name or path >>")
+                    input("\n    Input (Excel,World,PowerPoint) File name or path >> ")
                     .replace("'", "")
                     .replace('"', "")
                     .lstrip()
@@ -605,10 +616,10 @@ def bruteforce():
                     colr().hex("#6666ff", "    Characters >> ")
                 ).replace(" ", "")
                 minimum = int(
-                    input(colr().hex("#6666ff", "    Input Min Length Password >>"))
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
                 )
                 maximum = int(
-                    input(colr().hex("#6666ff", "    Input Max Length Password >>"))
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
                 )
                 # show the user input to verification
                 Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
@@ -655,7 +666,7 @@ def bruteforce():
                         else:
                             pass
                     m.close()
-                    input(colr().hex("#ff0000", f"\n    Press enter to  main #"))
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
                     e_w_p()
@@ -670,19 +681,19 @@ def bruteforce():
 
         e_w_p()
 
-    elif command == "5":
+    elif choice == "5":
 
         def hash_g():
             try:
                 hash = (
-                    input("\n    Input Encripted Hash String >>")
+                    input("\n    Input Encripted Hash String >> ")
                     .replace("'", "")
                     .replace('"', "")
                     .lstrip()
                     .rstrip()
                 )
                 hash_type = input(
-                    f"Select [1]MD5 [2]SHA1 [3]SHA224 [4]SHA256 [5]SHA384 [6]SHA512 [7]BLAKE2B [8]BLAKE2S Type >>"
+                    f"Select [1]MD5 [2]SHA1 [3]SHA224 [4]SHA256 [5]SHA384 [6]SHA512 [7]BLAKE2B [8]BLAKE2S Type >> "
                 )
 
                 Colors.red(
@@ -692,10 +703,10 @@ def bruteforce():
                     colr().hex("#6666ff", "    Characters >> ")
                 ).replace(" ", "")
                 minimum = int(
-                    input(colr().hex("#6666ff", "Input Min Length Password >>"))
+                    input(colr().hex("#6666ff", "Input Min Length Password >> "))
                 )
                 maximum = int(
-                    input(colr().hex("#6666ff", "Input Max Length Password >>"))
+                    input(colr().hex("#6666ff", "Input Max Length Password >> "))
                 )
                 # show the user input to verification
                 Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
@@ -745,7 +756,7 @@ def bruteforce():
                             break
                         else:
                             pass
-                    input(colr().hex("#ff0000", f"\n    Press enter to  main #"))
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
                     hash_g()
@@ -760,12 +771,12 @@ def bruteforce():
 
         hash_g()
 
-    elif command == "6":
+    elif choice == "6":
 
         def generate_dicitory():
             try:
                 path = (
-                    input(colr().hex("#6666ff", "\n    Input File name or path >>"))
+                    input(colr().hex("#6666ff", "\n    Input File name or path >> "))
                     .replace("'", "")
                     .replace('"', "")
                     .lstrip()
@@ -775,13 +786,13 @@ def bruteforce():
                     "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
                 )
                 character_list = input(
-                    colr().hex("#6666ff", " Characters    > ")
+                    colr().hex("#6666ff", " Characters   >> ")
                 ).replace(" ", "")
                 minimum = int(
-                    input(colr().hex("#6666ff", "    Input Min Length Password >>"))
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
                 )
                 maximum = int(
-                    input(colr().hex("#6666ff", "    Input Max Length Password >>"))
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
                 )
                 # show the user input to verification
                 Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
@@ -828,7 +839,7 @@ def bruteforce():
                     result(
                         character_list, path, start_time
                     )  # put directory result function calling
-                    input(colr().hex("#ff0000", f"\n    Press enter to  main #"))
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
                     generate_dicitory()
@@ -844,26 +855,342 @@ def bruteforce():
         generate_dicitory()
 
 
-def directory_attack():
-    print(
-        colr().hex("#6666ff", "\n    Select"),
-        colr().hex("#ff0000", "[1]"),
-        colr().hex("#6666ff", "PDF"),
-        colr().hex("#ff0000", " [2]"),
-        colr().hex("#6666ff", "RAR"),
-        colr().hex("#ff0000", "[3]"),
-        colr().hex("#6666ff", "ZIP"),
-        colr().hex("#ff0000", "[4]"),
-        colr().hex("#6666ff", "MS_Office"),
-    )
-    print(
-        colr().hex("#ff0000", "           [5]"),
-        colr().hex("#6666ff", "Hash"),
-        colr().hex("#ff0000", "[6]"),
-        colr().hex("#6666ff", "Generate Dictionay"),
-        colr().hex("#ff0000", "[0]"),
-        colr().hex("#6666ff", "Exit"),
-    )
+# =================================================================================================================================================================================================================================== #
+
+
+# =================================================================================================================================================================================================================================== #
+
+# Directory Attack
+
+
+def directory():
+    sub_menu()
+    sleep(0.5)
+
+    choice = input(colr().hex("#ff0000", "\n    Directory/# "))
+    if choice == "1":
+
+        def pdf_directory():
+            try:
+                pdf = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input PDF File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+
+                dir_path = input(
+                    colr().hex("#6666ff", "    Input Directory File Path or Name >> ")
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "         PDF Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{pdf}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Directory Name:", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{dir_path}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.directory(dir_path):
+                        Time.trying(i, start_time)
+                        if Check_Key.pdf_key(pdf, i) == True:
+                            result(pdf, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    pdf_directory()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        pdf_directory()
+
+    elif choice == "2":
+
+        def rar_directory():
+            try:
+                rar = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input RAR File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+
+                dir_path = input(
+                    colr().hex("#6666ff", "    Input Directory File Path or Name >> ")
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "         RAR Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{rar}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Directory Name:", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{dir_path}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.directory(dir_path):
+                        Time.trying(i, start_time)
+                        if Check_Key.rar_key(rar, i) == True:
+                            result(rar, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    rar_directory()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        rar_directory()
+    elif choice == "3":
+
+        def zip_directory():
+            try:
+                zip = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input ZIP File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+
+                dir_path = input(
+                    colr().hex("#6666ff", "    Input Directory File Path or Name >> ")
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "         ZIP Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{zip}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Directory Name:", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{dir_path}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.directory(dir_path):
+                        Time.trying(i, start_time)
+                        if Check_Key.zip_key(zip, str(i)) == True:
+                            result(zip, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    zip_directory()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        zip_directory()
+    elif choice == "4":
+
+        def e_w_p_directory():
+            try:
+                e_w_p = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input Pdf File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+
+                dir_path = input(
+                    colr().hex("#6666ff", "    Input Directory File Path or Name >> ")
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "         PDF Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{e_w_p}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Directory Name:", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{dir_path}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    open_e_w_p_file = open(e_w_p, "rb")
+                    start_time = time.time()
+                    for i in Generate.directory(dir_path):
+                        Time.trying(i, start_time)
+                        if Check_Key.ms_office_key(open_e_w_p_file, str(i)) == True:
+                            result(e_w_p, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    e_w_p_directory()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        e_w_p_directory()
+    elif choice == "5":
+
+        def hash_directory():
+            try:
+                hash = (
+                    input("\n    Input Encripted Hash String >> ")
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+                hash_type = input(
+                    f"Select [1]MD5 [2]SHA1 [3]SHA224 [4]SHA256 [5]SHA384 [6]SHA512 [7]BLAKE2B [8]BLAKE2S Type >> "
+                )
+                dir_path = input(
+                    colr().hex("#6666ff", "    Directory Name or Path >> ")
+                ).replace(" ", "")
+                # show the user input to verification
+                Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex(
+                        "#ff0000", "        Encripted Hash String :", rgb_mode=True
+                    ),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{hash}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n        Hash Type :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{hash_type}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n        Directory Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{dir_path}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.directory(dir_path):
+                        Time.trying(i, start_time)
+                        if Check_Key.hash_key(hash, i, hash_type) == True:
+                            result(hash, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    hash_directory()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        hash_directory()
+    else:
+        Operators.case_default()
 
 
 def main_banner():
@@ -890,16 +1217,16 @@ def main_banner():
 
     Colors.blue("\n      " + dash)
     null = ""
-    dash = null.center(57, "-")
+    dash = null.center(58, "-")
     Colors.blue("\n                   ," + dash + ",")
     # Main Choice
     print(
         colr().hex("#0000ff", "                   |"),
         colr().hex("#6666ff", "Select"),
         colr().hex("#ff0000", "[1]"),
-        colr().hex("#6666ff", "BrutForce"),
+        colr().hex("#6666ff", "BruteForce"),
         colr().hex("#ff0000", " [2]"),
-        colr().hex("#6666ff", "Dictionay"),
+        colr().hex("#6666ff", "Directory"),
         colr().hex("#ff0000", "[3]"),
         colr().hex("#6666ff", "Random"),
         colr().hex("#ff0000", "[0]"),
@@ -912,16 +1239,16 @@ def main_banner():
     try:
         choice = input(colr().hex("#ff0000", "\n    Cracker/# "))
         if choice == "1":
-            bruteforce()
+            brute_force()
         elif choice == "2":
-            print("2")
-            result()
+            directory()
         elif choice == "3":
             print("3")
 
         elif choice == "0":
             Operators.exit()
         else:
+            print("")
             Operators.case_default()
 
     except KeyboardInterrupt:
