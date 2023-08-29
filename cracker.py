@@ -118,6 +118,15 @@ class Generate:
                 yield i.decode(encoding).replace("\n", "")
             except:
                 pass
+    # Random generating password function
+    def random(charectors,min,max,limit):
+        char = list(set(list(charectors)))
+        for i in range(limit):
+            word = ""
+            for ii in range(random.randint(min,max)):
+                random.shuffle(char)
+                word=word+str(char[0])
+            yield word
 
 
 class Time:
@@ -1191,8 +1200,578 @@ def directory():
         hash_directory()
     else:
         Operators.case_default()
+ #=================================================================================================================================================================================================================================== 
 
+ #===================================================================================================================================================================================================================================  
 
+def random_attack():
+    sub_menu()
+    sleep(0.5)
+    choice = input(colr().hex("#ff0000", "\n    Random/# "))
+    if choice == "1":
+
+        def pdf_crack():
+            try:
+                pdf = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input PDF File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+                Colors.red(
+                    "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
+                )
+                character_list = input(
+                    colr().hex("#6666ff", "    Characters >> ")
+                ).replace(" ", "")
+                minimum = int(
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
+                )
+                maximum = int(
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
+                )
+                limit = int(
+                    input(colr().hex("#6666ff", "    Input Limit of  Password >> "))
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "         PDF Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{pdf}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Character :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{character_list}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{minimum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{maximum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Limit Password :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{limit}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                print("")
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.random(character_list, minimum, maximum,limit):
+                        Time.trying(i, start_time)
+                        if Check_Key.pdf_key(pdf, i) == True:
+                            result(pdf, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    pdf_crack()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        pdf_crack()
+    elif choice == "2":
+
+        def rar_crack():
+            try:
+                rar = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input RAR File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+
+                Colors.red(
+                    "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
+                )
+                character_list = input(
+                    colr().hex("#6666ff", " Characters >> ")
+                ).replace(" ", "")
+                minimum = int(
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
+                )
+                maximum = int(
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
+                )
+                limit = int(
+                    input(colr().hex("#6666ff", "    Input Limit of  Password >> "))
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "    RAR Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{rar}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Character :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{character_list}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{minimum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{maximum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Limited :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{limit}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.blue("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.random(character_list, minimum, maximum,limit):
+                        Time.trying(i, start_time)
+                        if Check_Key.rar_key(rar, i) == True:
+                            result(rar, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    rar_crack()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        rar_crack()
+
+    elif choice == "3":
+
+        def zip_crack():
+            try:
+                zip = (
+                    input(
+                        colr().hex(
+                            "#6666ff",
+                            f"\n    Input ZIP File name or path >> ",
+                            rgb_mode=True,
+                        )
+                    )
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+                Colors.red(
+                    "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
+                )
+                character_list = input(
+                    colr().hex("#6666ff", "    Characters >> ")
+                ).replace(" ", "")
+                minimum = int(
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
+                )
+                maximum = int(
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
+                )
+                limit = int(
+                    input(colr().hex("#6666ff", "    Input Limit of  Password >> "))
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "         ZIP Name :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{zip}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Character :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{character_list}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{minimum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{maximum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Limited :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{limit}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.dark_green("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                print("")
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.random(character_list, minimum, maximum,limit):
+                        Time.trying(i, start_time)
+                        if Check_Key.zip_key(zip, str(i)) == True:
+                            result(zip, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    zip_crack()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n    Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        zip_crack()
+
+    elif choice == "4":
+
+        def e_w_p():
+            try:
+                ms_f = (
+                    input("\n    Input (Excel,World,PowerPoint) File name or path >> ")
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+
+                Colors.red(
+                    "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
+                )
+                character_list = input(
+                    colr().hex("#6666ff", "    Characters >> ")
+                ).replace(" ", "")
+                minimum = int(
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
+                )
+                maximum = int(
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
+                )
+                limit = int(
+                    input(colr().hex("#6666ff", "    Input Limit of  Password >> "))
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n    ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex(
+                        "#ff0000", "    Excel,World,PowerPoint Name :", rgb_mode=True
+                    ),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{ms_f}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Character :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{character_list}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{minimum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{maximum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Limited :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{limit}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.blue("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    m = open(ms_f, "rb")
+                    start_time = time.time()
+                    for i in Generate.random(character_list, minimum, maximum,limit):
+                        Time.trying(i, start_time)
+                        if Check_Key.ms_office_key(m, str(i)) == True:
+                            m.close()
+                            result(ms_f, i, start_time)
+                            break
+                        else:
+                            pass
+                    m.close()
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    e_w_p()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        e_w_p()
+
+    elif choice == "5":
+
+        def hash_g():
+            try:
+                hash = (
+                    input("\n    Input Encripted Hash String >> ")
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+                hash_type = input(
+                    f"Select [1]MD5 [2]SHA1 [3]SHA224 [4]SHA256 [5]SHA384 [6]SHA512 [7]BLAKE2B [8]BLAKE2S Type >> "
+                )
+
+                Colors.red(
+                    "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
+                )
+                character_list = input(
+                    colr().hex("#6666ff", "    Characters >> ")
+                ).replace(" ", "")
+                minimum = int(
+                    input(colr().hex("#6666ff", "Input Min Length Password >> "))
+                )
+                maximum = int(
+                    input(colr().hex("#6666ff", "Input Max Length Password >> "))
+                )
+                limit = int(
+                    input(colr().hex("#6666ff", "    Input Limit of  Password >> "))
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex(
+                        "#ff0000", "        Encripted Hash String :", rgb_mode=True
+                    ),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{hash}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n        Hash Type :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{hash_type}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Character :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{character_list}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{minimum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{maximum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Limited :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{limit}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.blue("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    for i in Generate.random(character_list, minimum, maximum,limit):
+                        Time.trying(i, start_time)
+                        if Check_Key.hash_key(hash, str(i), hash_type) == True:
+                            result(hash, i, start_time)
+                            break
+                        else:
+                            pass
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    hash_g()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        hash_g()
+
+    elif choice == "6":
+
+        def generate_dicitory():
+            try:
+                path = (
+                    input(colr().hex("#6666ff", "\n    Input File name or path >> "))
+                    .replace("'", "")
+                    .replace('"', "")
+                    .lstrip()
+                    .rstrip()
+                )
+                Colors.red(
+                    "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
+                )
+                character_list = input(
+                    colr().hex("#6666ff", " Characters   >> ")
+                ).replace(" ", "")
+                minimum = int(
+                    input(colr().hex("#6666ff", "    Input Min Length Password >> "))
+                )
+                maximum = int(
+                    input(colr().hex("#6666ff", "    Input Max Length Password >> "))
+                )
+                limit = int(
+                    input(colr().hex("#6666ff", "    Input Limit of  Password >> "))
+                )
+                # show the user input to verification
+                Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
+                print(
+                    colr().hex("#ff0000", "        Path :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{path}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Character :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{character_list}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{minimum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{maximum}",
+                        rgb_mode=True,
+                    ),
+                    colr().hex("#ff0000", "\n         Limited :", rgb_mode=True),
+                    colr().hex(
+                        "#00ff8d",
+                        f"{limit}",
+                        rgb_mode=True,
+                    ),
+                )
+                Colors.blue("\n    Check the input is correct ? \n")
+                answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                answer = answer.lower()
+                if answer == "y" or answer == "yes":
+                    start_time = time.time()
+                    b_list = open(path, "w")
+                    th = threading.Thread(target=main_banner.dic_gen_show)
+
+                    th.start()
+                    for i in Generate.random(character_list, minimum, maximum,limit):
+                        b_list.write(str(i) + "\n")
+                        b_list.close()
+
+                    time.sleep(2)
+                    result(
+                        character_list, path, start_time
+                    )  # put directory result function calling
+                    input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
+                    main_banner()
+                elif answer == "n" or answer == "no":
+                    generate_dicitory()
+                elif answer == "e" or answer == "exit":
+                    Colors.red("\n Exit")
+                    exit()
+                else:
+                    Operators.case_default()
+
+            except ValueError:
+                Operators.case_default()
+
+        generate_dicitory()
 def main_banner():
     null = ""
     dash = null.center(83, "-")
@@ -1243,7 +1822,7 @@ def main_banner():
         elif choice == "2":
             directory()
         elif choice == "3":
-            print("3")
+            random_attack()
 
         elif choice == "0":
             Operators.exit()
