@@ -1,1 +1,6 @@
 colr
+rarfile
+colorama
+msoffcrypto-tool
+pdfplumber
+chardet
