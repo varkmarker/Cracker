@@ -97,6 +97,9 @@ class Operators:
         )
         Colors.red("    ....Invalid Case....")
 
+    def back():
+        main_banner()
+
 
 # generating password or read wordlist file for the attack
 class Generate:
@@ -118,14 +121,15 @@ class Generate:
                 yield i.decode(encoding).replace("\n", "")
             except:
                 pass
+
     # Random generating password function
-    def random(charectors,min,max,limit):
+    def random(charectors, min, max, limit):
         char = list(set(list(charectors)))
         for i in range(limit):
             word = ""
-            for ii in range(random.randint(min,max)):
+            for ii in range(random.randint(min, max)):
                 random.shuffle(char)
-                word=word+str(char[0])
+                word = word + str(char[0])
             yield word
 
 
@@ -140,25 +144,26 @@ class Time:
 
     def trying(key, obj_time_time):
         hours, mins, sec = Time.stop_wotch(obj_time_time)
-        key_len = " " * int(20 - len(key))
+        # key_len = " " * int(20 - len(key))
         print()
         print(
-            "\033[A",colr().hex("#6666ff", "   Trying"),
+            "\033[A",
+            colr().hex("#6666ff", "   Trying"),
             colr().hex("#6666ff", "["),
             colr().hex("#cc33ff", f"{key}"),
             colr().hex("#6666ff", "]"),
             colr().hex("#6666ff", "     ["),
-            colr().hex("#6666ff", f"{hours}"),
+            colr().hex("#0000ff", f"{hours}"),
             colr().hex("#6666ff", ":"),
-            colr().hex("#cc33ff", f"{mins}"),
+            colr().hex("#0000ff", f"{mins}"),
             colr().hex("#6666ff", ":"),
-            colr().hex("#cc33ff", f"{sec}"),
+            colr().hex("#0000ff", f"{sec}"),
             colr().hex("#6666ff", "]"),
             colr().hex("#6666ff", "["),
             colr().hex("#6666ff", "Ctrl+C for Kill"),
-            colr().hex("#6666ff", "]"),"\033[A"
+            colr().hex("#6666ff", "]"),
+            "\033[A",
         )
-        
 
 
 # Hash key generater
@@ -196,45 +201,55 @@ def result(target, key, obj_time_time):
     style2 = "-" * len(target)
     hours, mins, sec = Time.stop_wotch(obj_time_time)
     time_len = "-" * len(f"{hours}{mins}{sec}")
-    if mins == "0" and sec == "0":
-        Colors.blue(f"    ,-----------{time_len}---------------,")
+    null = ""
+    dash = null.center(40, "-")
+    if mins == 0 and sec == 0:
+        Colors.blue(f"    ,{dash},")
         print(
             colr().hex("#6666ff", "    | "),
             colr().hex("#ff0000", "    Time :["),
             colr().hex("#ff8e35", "Less than a minute"),
             colr().hex("#ff0000", "]"),
-            colr().hex("#6666ff", "   |"),
+            colr().hex("#6666ff", "     |"),
         )
-        Colors.blue(f"    '---------------{time_len}-----------'")
+        Colors.blue(f"    '{dash}'")
     else:
         Colors.blue(f"    ,-----------{time_len}---------------,")
         print(
             colr().hex("#6666ff", "    | "),
             colr().hex("#ff0000", "    Time :["),
-            colr().hex("#ff8e35", f"{hours}"),
+            colr().hex("#0000ff", f"{hours}"),
             colr().hex("#ff0000", ":"),
-            colr().hex("#ff8e35", f"{mins}"),
+            colr().hex("#0000ff", f"{mins}"),
             colr().hex("#ff0000", ":"),
-            colr().hex("#ff8e35", f"{sec}"),
+            colr().hex("#0000ff", f"{sec}"),
             colr().hex("#ff0000", "]"),
             colr().hex("#6666ff", "   |"),
         )
         Colors.blue(f"    '---------------{time_len}-----------'")
-    Colors.blue(f"    ,---------------------------------{style}{style2}----------------,")
+    Colors.blue(
+        f"    ,---------------------------------{style}{style2}----------------,"
+    )
     print(
         colr().hex("#6666ff", "    | "),
         colr().hex("#21ff00", "Password Found :"),
         colr().hex("#ff0000", "Target :"),
         colr().hex("#ff0000", "["),
-        colr().hex("#ff8e35", f"{target}"),
+        colr().hex("#21ff00", f"{target}"),
         colr().hex("#ff0000", "]"),
         colr().hex("#ff0000", "Password :"),
         colr().hex("#ff0000", "["),
-        colr().hex("#ff8e35", f"{key}"),
+        colr().hex("#21ff00", f"{key}"),
         colr().hex("#ff0000", "]"),
         colr().hex("#6666ff", "|"),
     )
-    Colors.blue(f"    '---------------------------------{style}{style2}----------------'")
+    Colors.blue(
+        f"    '---------------------------------{style}{style2}----------------'"
+    )
+
+
+def passwd_nofound():
+    Colors.red("     *PASSWORD NOT FOUND* ")
 
 
 # Checking he Hashshake key
@@ -338,6 +353,30 @@ def sub_menu():
         colr().hex("#6666ff", "Hash"),
         colr().hex("#ff0000", "[6]"),
         colr().hex("#6666ff", "Generate Dictionay"),
+        colr().hex("#ff0000", "[7]"),
+        colr().hex("#6666ff", "Back"),
+        colr().hex("#ff0000", "[0]"),
+        colr().hex("#6666ff", "Exit"),
+    )
+
+
+def directory_menu():
+    print(
+        colr().hex("#6666ff", "\n    Select"),
+        colr().hex("#ff0000", "[1]"),
+        colr().hex("#6666ff", "PDF"),
+        colr().hex("#ff0000", " [2]"),
+        colr().hex("#6666ff", "RAR"),
+        colr().hex("#ff0000", "[3]"),
+        colr().hex("#6666ff", "ZIP"),
+        colr().hex("#ff0000", "[4]"),
+        colr().hex("#6666ff", "MS_Office"),
+    )
+    print(
+        colr().hex("#ff0000", "           [5]"),
+        colr().hex("#6666ff", "Hash"),
+        colr().hex("#ff0000", "[6]"),
+        colr().hex("#6666ff", "Back"),
         colr().hex("#ff0000", "[0]"),
         colr().hex("#6666ff", "Exit"),
     )
@@ -418,10 +457,14 @@ def brute_force():
                     for i in Generate.BrutForce(character_list, minimum, maximum):
                         Time.trying(i, start_time)
                         if Check_Key.pdf_key(pdf, i) == True:
+                            print("\n")
                             result(pdf, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.pdf_key(pdf, i) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -502,10 +545,14 @@ def brute_force():
                     for i in Generate.BrutForce(character_list, minimum, maximum):
                         Time.trying(i, start_time)
                         if Check_Key.rar_key(rar, i) == True:
+                            print("\n")
                             result(rar, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.rar_key(rar, i) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -587,10 +634,14 @@ def brute_force():
                     for i in Generate.BrutForce(character_list, minimum, maximum):
                         Time.trying(i, start_time)
                         if Check_Key.zip_key(zip, str(i)) == True:
+                            print("\n")
                             result(zip, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.zip_key(zip, str(i)) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -669,11 +720,15 @@ def brute_force():
                     for i in Generate.BrutForce(character_list, minimum, maximum):
                         Time.trying(i, start_time)
                         if Check_Key.ms_office_key(m, str(i)) == True:
+                            print("\n")
                             m.close()
                             result(ms_f, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.ms_office_key(m, str(i)) == False:
+                        print("\n")
+                        passwd_nofound()
                     m.close()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
@@ -761,10 +816,14 @@ def brute_force():
                     for i in Generate.BrutForce(character_list, minimum, maximum):
                         Time.trying(i, start_time)
                         if Check_Key.hash_key(hash, str(i), hash_type) == True:
+                            print("\n")
                             result(hash, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.hash_key(hash, str(i), hash_type) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -795,7 +854,7 @@ def brute_force():
                     "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
                 )
                 character_list = input(
-                    colr().hex("#6666ff", " Characters   >> ")
+                    colr().hex("#6666ff", "    Characters   >> ")
                 ).replace(" ", "")
                 minimum = int(
                     input(colr().hex("#6666ff", "    Input Min Length Password >> "))
@@ -806,25 +865,25 @@ def brute_force():
                 # show the user input to verification
                 Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
                 print(
-                    colr().hex("#ff0000", "        Path :", rgb_mode=True),
+                    colr().hex("#ff0000", "         Path :", rgb_mode=True),
                     colr().hex(
                         "#00ff8d",
                         f"{path}",
                         rgb_mode=True,
                     ),
-                    colr().hex("#ff0000", "\n        Character :", rgb_mode=True),
+                    colr().hex("#ff0000", "\n         Characters :", rgb_mode=True),
                     colr().hex(
                         "#00ff8d",
                         f"{character_list}",
                         rgb_mode=True,
                     ),
-                    colr().hex("#ff0000", "\n        Minimum Length :", rgb_mode=True),
+                    colr().hex("#ff0000", "\n         Minimum Length :", rgb_mode=True),
                     colr().hex(
                         "#00ff8d",
                         f"{minimum}",
                         rgb_mode=True,
                     ),
-                    colr().hex("#ff0000", "\n        Maximum Length :", rgb_mode=True),
+                    colr().hex("#ff0000", "\n         Maximum Length :", rgb_mode=True),
                     colr().hex(
                         "#00ff8d",
                         f"{maximum}",
@@ -833,16 +892,17 @@ def brute_force():
                 )
                 Colors.blue("\n    Check the input is correct ? \n")
                 answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                print("")
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
-                    b_list = open(path, "w")
-                    th = threading.Thread(target=main_banner.dic_gen_show)
-
-                    th.start()
-                    for i in Generate.BrutForce(character_list, minimum, maximum):
-                        b_list.write(str(i) + "\n")
-                        b_list.close()
+                    for i in ["\\", "|", "/", "-"]:
+                        time.sleep(0.4)
+                        dot = i * 3
+                        print()
+                        print(colr().hex("#ff0066", f"\033[A    Genrating{dot}\033[A"))
+                    for passwds in Generate.BrutForce(character_list, minimum, maximum):
+                        os.system(f"echo {passwds} >> {path}")
 
                     time.sleep(2)
                     result(
@@ -862,6 +922,12 @@ def brute_force():
                 Operators.case_default()
 
         generate_dicitory()
+    elif choice == "7":
+        Operators.back()
+    elif choice == "0":
+        Operators.exit()
+    else:
+        Operators.case_default()
 
 
 # =================================================================================================================================================================================================================================== #
@@ -873,7 +939,7 @@ def brute_force():
 
 
 def directory():
-    sub_menu()
+    directory_menu()
     sleep(0.5)
 
     choice = input(colr().hex("#ff0000", "\n    Directory/# "))
@@ -922,10 +988,14 @@ def directory():
                     for i in Generate.directory(dir_path):
                         Time.trying(i, start_time)
                         if Check_Key.pdf_key(pdf, i) == True:
+                            print("\n")
                             result(pdf, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.pdf_key(pdf, i) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -986,10 +1056,14 @@ def directory():
                     for i in Generate.directory(dir_path):
                         Time.trying(i, start_time)
                         if Check_Key.rar_key(rar, i) == True:
+                            print("\n")
                             result(rar, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.rar_key(rar, i) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1049,10 +1123,15 @@ def directory():
                     for i in Generate.directory(dir_path):
                         Time.trying(i, start_time)
                         if Check_Key.zip_key(zip, str(i)) == True:
+                            print("\n")
                             result(zip, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.zip_key(zip, str(i)) == False:
+                        print("\n")
+                        passwd_nofound()
+
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1113,10 +1192,15 @@ def directory():
                     for i in Generate.directory(dir_path):
                         Time.trying(i, start_time)
                         if Check_Key.ms_office_key(open_e_w_p_file, str(i)) == True:
+                            print("\n")
                             result(e_w_p, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.ms_office_key(open_e_w_p_file, str(i)) == False:
+                        print("\n")
+                        passwd_nofound()
+
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1180,10 +1264,14 @@ def directory():
                     for i in Generate.directory(dir_path):
                         Time.trying(i, start_time)
                         if Check_Key.hash_key(hash, i, hash_type) == True:
+                            print("\n")
                             result(hash, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.hash_key(hash, i, hash_type) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1198,11 +1286,18 @@ def directory():
                 Operators.case_default()
 
         hash_directory()
+    elif choice == "6":
+        Operators.back()
+    elif choice == "0":
+        Operators.exit()
     else:
         Operators.case_default()
- #=================================================================================================================================================================================================================================== 
 
- #===================================================================================================================================================================================================================================  
+
+# ===================================================================================================================================================================================================================================
+
+# ===================================================================================================================================================================================================================================
+
 
 def random_attack():
     sub_menu()
@@ -1280,13 +1375,17 @@ def random_attack():
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
-                    for i in Generate.random(character_list, minimum, maximum,limit):
+                    for i in Generate.random(character_list, minimum, maximum, limit):
                         Time.trying(i, start_time)
                         if Check_Key.pdf_key(pdf, i) == True:
+                            print("\n")
                             result(pdf, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.pdf_key(pdf, i) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1373,13 +1472,17 @@ def random_attack():
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
-                    for i in Generate.random(character_list, minimum, maximum,limit):
+                    for i in Generate.random(character_list, minimum, maximum, limit):
                         Time.trying(i, start_time)
                         if Check_Key.rar_key(rar, i) == True:
+                            print("\n")
                             result(rar, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.rar_key(rar, i) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1467,13 +1570,17 @@ def random_attack():
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
-                    for i in Generate.random(character_list, minimum, maximum,limit):
+                    for i in Generate.random(character_list, minimum, maximum, limit):
                         Time.trying(i, start_time)
                         if Check_Key.zip_key(zip, str(i)) == True:
+                            print("\n")
                             result(zip, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.zip_key(zip, str(i)) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1558,14 +1665,18 @@ def random_attack():
                 if answer == "y" or answer == "yes":
                     m = open(ms_f, "rb")
                     start_time = time.time()
-                    for i in Generate.random(character_list, minimum, maximum,limit):
+                    for i in Generate.random(character_list, minimum, maximum, limit):
                         Time.trying(i, start_time)
                         if Check_Key.ms_office_key(m, str(i)) == True:
+                            print("\n")
                             m.close()
                             result(ms_f, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.ms_office_key(m, str(i)) == False:
+                        print("\n")
+                        passwd_nofound()
                     m.close()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
@@ -1659,13 +1770,17 @@ def random_attack():
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
-                    for i in Generate.random(character_list, minimum, maximum,limit):
+                    for i in Generate.random(character_list, minimum, maximum, limit):
                         Time.trying(i, start_time)
                         if Check_Key.hash_key(hash, str(i), hash_type) == True:
+                            print("\n")
                             result(hash, i, start_time)
                             break
                         else:
                             pass
+                    if Check_Key.hash_key(hash, str(i), hash_type) == False:
+                        print("\n")
+                        passwd_nofound()
                     input(colr().hex("#ff0000", f"\n\n    Press enter to  main # "))
                     main_banner()
                 elif answer == "n" or answer == "no":
@@ -1696,7 +1811,7 @@ def random_attack():
                     "\n    EG: abcdefghijklmnopqrstuvwz or ABCDEFGHIKLMNOPQRSTUVWZ or 1234567890 "
                 )
                 character_list = input(
-                    colr().hex("#6666ff", " Characters   >> ")
+                    colr().hex("#6666ff", "\n    Characters   >> ")
                 ).replace(" ", "")
                 minimum = int(
                     input(colr().hex("#6666ff", "    Input Min Length Password >> "))
@@ -1710,7 +1825,7 @@ def random_attack():
                 # show the user input to verification
                 Colors.dark_rose("\n      ******* YOUR INPUT RESULt *******\n")
                 print(
-                    colr().hex("#ff0000", "        Path :", rgb_mode=True),
+                    colr().hex("#ff0000", "         Path :", rgb_mode=True),
                     colr().hex(
                         "#00ff8d",
                         f"{path}",
@@ -1743,16 +1858,19 @@ def random_attack():
                 )
                 Colors.blue("\n    Check the input is correct ? \n")
                 answer = input(colr().hex("#6666ff", "    y or n or e = exit > "))
+                print("")
                 answer = answer.lower()
                 if answer == "y" or answer == "yes":
                     start_time = time.time()
-                    b_list = open(path, "w")
-                    th = threading.Thread(target=main_banner.dic_gen_show)
-
-                    th.start()
-                    for i in Generate.random(character_list, minimum, maximum,limit):
-                        b_list.write(str(i) + "\n")
-                        b_list.close()
+                    for i in ["\\", "|", "/", "-"]:
+                        time.sleep(0.4)
+                        dot = i * 3
+                        print()
+                        print(colr().hex("#ff0066", f"\033[A    Generating{dot}\033[A"))
+                    for passwds in Generate.random(
+                        character_list, minimum, maximum, limit
+                    ):
+                        os.system(f"echo {passwds} >> {path}")
 
                     time.sleep(2)
                     result(
@@ -1772,6 +1890,14 @@ def random_attack():
                 Operators.case_default()
 
         generate_dicitory()
+    elif choice == "7":
+        Operators.back()
+    elif choice == "0":
+        Operators.exit()
+    else:
+        Operators.case_default()
+
+
 def main_banner():
     null = ""
     dash = null.center(83, "-")
