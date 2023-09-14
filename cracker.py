@@ -1,4 +1,4 @@
-import hashlib, os, pdfplumber, colorama, time, random, zipfile, msoffcrypto, io, threading, chardet
+import hashlib, os, pdfplumber, time, random, zipfile, msoffcrypto, io, threading, chardet
 from time import sleep
 from rarfile import RarFile
 from itertools import product
